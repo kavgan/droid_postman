@@ -48,8 +48,9 @@ HOW TO USE THIS LIBRARY AND IT'S METHODS:
 
 3) Make your onCreate() look like this: 
 
-public String URL;
-@Override
+    public String URL;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
