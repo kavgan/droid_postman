@@ -29,9 +29,9 @@ HOW TO ADD THIS LIBRARY TO YOUR PROJECT:
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':droidpostman')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.1.0'
-    compile project(':droidpostman')
 }
 
 13) top right corner: click on "Sync Now" 
