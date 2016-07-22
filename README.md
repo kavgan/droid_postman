@@ -3,7 +3,7 @@ An android library to POST data over HTTP to any server very easily and flexibly
 
 HOW TO ADD THIS LIBRARY TO YOUR PROJECT:
 
-1) Download the library droidpostman.jar
+1) Download the library droidpostman.jar (link: https://github.com/rohitpaniker/droid_postman)
 
 2) copy the library to your project's /libs directory (Example: "C:\Users\<your-user-name>\AndroidStudioProject\YourProject\app\libs\droidpostman.jar")
 
