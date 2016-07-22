@@ -116,6 +116,19 @@ HOW TO USE THIS LIBRARY AND IT'S METHODS:
       
   c) in preExecute : change setTitle and setMessage with your custom message.
   
+
+6) Within onPostExecute() you will get response from your script on the server, Handle the result with approproate actions you want after you get response from your script on server:
+
+            @Override
+            protected void onPostExecute(String result) {
+                // TODO Auto-generated method stub
+                progressDialog.dismiss();
+                Log.e("Server Response", "--------------------------------" + serverResponse);
+                if(serverResponse.equals("SOME_SERVER_VALUE")){
+
+                }
+            }
+  
   
   
   
