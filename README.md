@@ -48,44 +48,48 @@ HOW TO USE THIS LIBRARY AND IT'S METHODS:
 
 3) Make your onCreate() look like this: 
 
-    public String URL;
+    public static String URL = "http://www.yourwebserver.com/somedirectory/appFormSubmit.php";
+    HashMap<String, String> formData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        formData = new HashMap<>();
+        
 
-        URL = "http://www.someserver.com/postTest.php";
+        formData.put("KEY1", "VALUE1");
+        formData.put("KEY2", "VALUE2");
+        formData.put("KEY3", "VALUE3");
 
-        sendPostRequest(URL);
+        sendPostRequest();
     }
     
 4) Write an AsyncTask routine outside your onCreate() and make it look exactly like this or write your own as per your need:
 
 
-    private void sendPostRequest(String url) {
+    private void sendPostRequest() {
 
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
             private String serverResponse;
-            final ProgressDialog progressDialog = new ProgressDialog(WhateverMainActivityName.this, ProgressDialog.STYLE_SPINNER);
-            HashMap<String, String> map = new HashMap<>();
+            private Context mcontext;
+            public SendPostReqAsyncTask (Context context) {
+                this.mcontext= context;
+            }
+            ProgressDialog progressDialog;
 
             @Override
             protected void onPreExecute() {
+                super.onPreExecute();
+                progressDialog = new ProgressDialog(mcontext, ProgressDialog.STYLE_SPINNER);
                 progressDialog.setIndeterminate(true);
                 progressDialog.setTitle("Authenticating");
                 progressDialog.setMessage("Please wait while we are authenticating you....");
                 progressDialog.show();
-
-
-                map.put("KEY1", "VALUE1");
-                map.put("KEY2", "VALUE2");
-                map.put("KEY3", "VALUE3");
-
             }
 
             @Override
             protected String doInBackground(String... params) {
-                serverResponse = DroidPostMan.sendDataToServer(URL, map); // send POST data to server
+                serverResponse = DroidPostMan.sendDataToServer(URL, formData); // send POST data to server
                 return null;
             }
 
@@ -100,8 +104,8 @@ HOW TO USE THIS LIBRARY AND IT'S METHODS:
             }
         }
 
-        SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
-        sendPostReqAsyncTask.execute(url);
+        SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask(yourActivity.this); // use getActivity() if usin fragment
+        sendPostReqAsyncTask.execute();
     }
 
 
